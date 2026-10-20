@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://voiceops-s046.onrender.com
     steps:
       - name: Deploy to Render
         run: |
