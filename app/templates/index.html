@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VoiceOps — Intelligent Document Exception Copilot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Floating Transparent Pop-Out Banner for Selected Case -->
+    <aside id="selectedCaseBanner" class="floating-case-banner" aria-label="Selected Case Summary" hidden>
+        <div class="banner-inner container">
+            <div class="banner-left">
+                <span class="banner-eyebrow">ACTIVE CASE</span>
+                <span class="caseid banner-case-id" id="bannerCaseId">—</span>
+                <span class="tag banner-domain" id="bannerDomain">—</span>
+                <span class="banner-desc" id="bannerDesc" title="">—</span>
+            </div>
+            <div class="banner-right">
+                <div class="banner-field">
+                    <span class="banner-label">Status</span>
+                    <span id="bannerStatus">—</span>
+                </div>
+                <div class="banner-field">
+                    <span class="banner-label">Suggested Action</span>
+                    <span id="bannerAction" class="banner-action-text">—</span>
+                </div>
+                <div class="banner-field">
+                    <span class="banner-label">Review</span>
+                    <span id="bannerReview">—</span>
+                </div>
+                <div class="banner-actions">
+                    <button type="button" id="bannerToDetailsBtn" class="banner-btn" title="Scroll down to Case Details">Details ↓</button>
+                    <button type="button" id="bannerToQueueBtn" class="banner-btn secondary" title="Return to Case Queue">Queue ↑</button>
+                    <button type="button" id="bannerCloseBtn" class="banner-close-btn" title="Dismiss Banner" aria-label="Dismiss banner">✕</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="eyebrow">DOCUMENT EXCEPTION MANAGEMENT</div>
+                    <h1>VoiceOps <span>Copilot</span></h1>
+                    <p>One review workspace for mortgage and healthcare workflows.</p>
+                </div>
+                <div class="header-right">
+                    <div class="status-pill" id="voiceStatusIndicator">
+                        ● System Ready
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="stats" id="stats"></div>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <h2>Case Queue</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="toolbar">
+                        <div>
+                            <h3>Review and manage document exceptions</h3>
+                            <p class="muted">Select a case to inspect evidence and take a reviewer action.</p>
+                        </div>
+                        <div class="filters">
+                            <label for="domain">Domain</label>
+                            <select id="domain">
+                                <option value="">All domains</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="mortgage">Mortgage</option>
+                            </select>
+                            <label for="review">Review Status</label>
+                            <select id="review">
+                                <option value="">All cases</option>
+                                <option value="true">Needs review</option>
+                                <option value="false">No review flag</option>
+                            </select>
+                            <label for="search">Search</label>
+                            <input id="search" placeholder="Search case ID or exception text">
+                        </div>
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div id="pagination" class="pagination-container"></div>
+
+                    <div class="tablewrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Case ID</th>
+                                    <th>Domain</th>
+                                    <th>Exception Description</th>
+                                    <th>Current Status</th>
+                                    <th>Suggested Action</th>
+                                    <th>Review Queue Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rows"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split">
+                <div class="panel" id="detail">
+                    <div class="panel-header">
+                        <h2>Case Details</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="empty">
+                            <div class="empty-icon">👁️</div>
+                            <p>Choose a case from the queue to see its details.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Ask VoiceOps</h2>
+                    </div>
+                    <div class="panel-content">
+                        <p class="muted">Questions use loaded case records and deterministic rules; no LLM required.</p>
+
+                        <label for="question">Your Question</label>
+                        <div class="question-input-wrap">
+                            <textarea id="question" rows="3" placeholder="What is missing, and what should happen next?"></textarea>
+                            <button id="questionMic" class="mic-button secondary" type="button" title="Speak your question" aria-label="Speak your question">
+                                🎙 Speak question
+                            </button>
+                        </div>
+                        <div id="questionMicStatus" class="muted small" role="status" aria-live="polite"></div>
+
+                        <div class="actions">
+                            <button id="ask" class="button-primary">Ask Question</button>
+                            <button class="button-secondary" id="speak" disabled>Read Answer Aloud</button>
+                            <button class="button-secondary" id="stop">Stop Audio</button>
+                        </div>
+
+                        <div id="answer" class="answer">Answer will appear here.</div>
+                        <audio id="player" controls hidden></audio>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Note: VoiceOps is an internal prototype.</p>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

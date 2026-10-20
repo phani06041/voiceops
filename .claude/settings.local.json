@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://127.0.0.1:8000/health)",
+      "Bash(curl -s http://127.0.0.1:8000/ml/info)",
+      "Bash(curl -s https://api.github.com/repos/kharyan14/docchase)",
+      "Bash(curl -s https://api.github.com/repos/kharyan14/docchase/contents)",
+      "Bash(curl -s https://raw.githubusercontent.com/kharyan14/docchase/main/speak.py)",
+      "Bash(curl -s https://raw.githubusercontent.com/kharyan14/docchase/main/listen.py)",
+      "Bash(curl -s https://raw.githubusercontent.com/kharyan14/docchase/main/server.py)",
+      "Bash(find /Users/phanindra/Madmaxx/voiceops 2 -name \"*test*\" -type f | head -10)",
+      "Read(//Users/phanindra/Madmaxx/**)",
+      "Bash(.venv/bin/pip list *)",
+      "Bash(.venv/bin/python -m pytest tests/ -v)",
+      "Bash(.venv/bin/python -c \"from app.integrations.slng_client import transcribe, speak; print\\('SLNG client imports successfully'\\)\")",
+      "Bash(.venv/bin/python -m pytest tests/test_slng_client.py -v)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --log-level error)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/voice/test)",
+      "Bash(kill %1)",
+      "Bash(.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --log-level info)",
+      "Bash(curl -s http://127.0.0.1:8000/)",
+      "Bash(curl -s http://127.0.0.1:8000/static/style.css)"
+    ]
+  }
+}
