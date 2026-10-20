@@ -2,7 +2,8 @@ name: Deploy to Render
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -10,6 +11,19 @@ jobs:
     steps:
       - name: Deploy to Render
         run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+            echo "::error::Secret RENDER_DEPLOY_HOOK_URL is not configured in GitHub repository secrets!"
+            exit 1
+          fi
           echo "Triggering Render deploy..."
-          curl -X POST -s ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-          echo "Deploy triggered successfully!"
+          HTTP_STATUS=$(curl -s -o /tmp/deploy_response.txt -w "%{http_code}" -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}")
+          echo "Render response:"
+          cat /tmp/deploy_response.txt
+          echo ""
+          echo "HTTP Status Code: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "Deploy triggered successfully on Render!"
+          else
+            echo "::error::Render deploy hook returned error HTTP status: $HTTP_STATUS"
+            exit 1
+          fi
