@@ -2,6 +2,8 @@
 
 A lightweight FastAPI prototype combining healthcare authorization exceptions with a separate mortgage exception ruleset. Business decisions use deterministic Python rules; a paid LLM is not required.
 
+**🚀 Live Demo**: [VoiceOps on Render](https://voiceops-s046.onrender.com)
+
 ## What was available and what was built
 
 The provided workspace contained `open_cases.csv`, `approved_cases.csv`, and the master requirements prompt, but no pre-existing application repository or mortgage implementation was mounted. The two CSVs each use the same 14-column healthcare schema. This build preserves both files in `data/`, loads them as read-only inputs, and adds clearly labeled synthetic mortgage cases because no mortgage dataset was provided. It does not claim to have reused teammate code that was not available.
