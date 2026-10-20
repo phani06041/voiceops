@@ -2,10 +2,12 @@
 
 A lightweight FastAPI prototype combining healthcare authorization exceptions with a separate mortgage exception ruleset. Business decisions use deterministic Python rules; a paid LLM is not required.
 
----
-
-**🎯 Live Demo**: [VoiceOps on Render](https://voiceops-s046.onrender.com)
-**Try the interactive API documentation at**: https://voiceops-s046.onrender.com/docs
+<div align="center">
+  <a href="https://voiceops-s046.onrender.com" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-VoiceOps%20on%20Render-brightgreen?style=for-the-badge&logo=render" alt="Live Demo - VoiceOps on Render">
+  </a>
+  <p><em>Try the interactive API documentation at: <a href="https://voiceops-s046.onrender.com/docs">https://voiceops-s046.onrender.com/docs</a></em></p>
+</div>
 
 ---
 
