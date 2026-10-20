@@ -27,5 +27,5 @@ services:
         value: data
       - key: DATABASE_PATH
         value: voiceops.sqlite3
-    # Optional: Auto-deploy on pushes to main branch
-    autoDeploy: true
+    # Controlled via GitHub Actions deploy hook to prevent duplicate deploys
+    autoDeploy: false
