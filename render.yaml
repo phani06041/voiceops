@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: voiceops
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SLNG_API_KEY
+        fromValue:
+          # You'll need to set this in Render dashboard with your actual SLNG API key
+          # For security, don't commit the actual key to the repo
+          # Get your key from: https://console.slng.ai/
+        # Value will be set in Render dashboard
+      - key: SLNG_BASE_URL
+        value: https://in.api.slng.ai
+      - key: SLNG_REGION
+        value: ap-south-1
+      - key: SLNG_STT_MODEL
+        value: deepgram/nova:3
+      - key: SLNG_TTS_MODEL
+        value: aura-2-thalia-en
+      - key: SLNG_TTS_VOICE
+        value: aura-2-thalia-en
+      - key: CONFIDENCE_REVIEW_THRESHOLD
+        value: "0.65"
+      - key: DATA_DIR
+        value: data
+      - key: DATABASE_PATH
+        value: voiceops.sqlite3
+    # Optional: Auto-deploy on pushes to main branch
+    autoDeploy: true
