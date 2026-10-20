@@ -90,3 +90,4 @@ pytest -q
 5. **Read answer aloud** uses the Aura 2 HTTP endpoint. A `401 Invalid API key` means SLNG rejected the credential; create/verify a key in the SLNG dashboard. Code changes cannot make an invalid key valid.
 
 Nova 3 HTTP endpoint behavior follows the [SLNG Nova 3 documentation](https://docs.slng.ai/api-reference/stt/deepgram-nova-3/nova-3-http); Aura 2 uses the [SLNG Aura 2 documentation](https://docs.slng.ai/api-reference/endpoints/deepgram-aura-2/aura-2-http).
+
